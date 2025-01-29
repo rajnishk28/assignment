@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
   { text: 'Dashboard', to: '/dashboard' },
@@ -12,25 +12,28 @@ const navItems = [
   { text: 'Transaction List', to: '/transactions' },
   { text: 'Google Analytics', to: '/analytics' },
   { text: 'Multi-Currency', to: '/multi-currency' },
-  // { text: 'Category', to: '/category' },
-  // { text: 'Live Chat History', to: '/chat-history' },
-  // { text: 'Package Plan', to: '/package-plans' },
+  { text: 'Category', to: '/category' },
+  { text: 'Live Chat History', to: '/chat-history' },
+  { text: 'Package Plan', to: '/package-plans' },
   // { text: 'Referral History', to: '/referrals' },
   // { text: 'Google Map', to: '/google-map' },
 ];
 
 const AdminSideBar = () => {
+  const { pathname: currentUrl } = useLocation();
+
   return (
-    <aside className="bg-white text-[#199FB1] w-64 p-4 rounded-r-lg h-screen overflow-y-auto z-50">
+    <aside className="bg-white text-[#199FB1] w-64 p-2 rounded-lg h-screen overflow-y-auto ml-9 mt-3">
       <div className="mb-8 flex justify-center">
         <h2 className="text-2xl font-bold">Logo</h2>
       </div>
       <ul className="space-y-2">
         {navItems.map((item) => (
-          <li key={item.text}> 
+          <li key={item.text}>
             <Link
               to={item.to}
-              className="block py-2 px-4 rounded hover:bg-[#e6f2f5] transition duration-300" 
+              className={`block py-2 px-4 rounded hover:bg-[#e6f2f5] transition duration-300 ${currentUrl === item.to ? 'bg-[#e6f2f5] font-bold' : ''
+                }`}
             >
               {item.text}
             </Link>

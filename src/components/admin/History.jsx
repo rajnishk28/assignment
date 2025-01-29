@@ -22,62 +22,76 @@ const History = () => {
          
             <div className="relative z-10 flex">
                 <AdminSideBar />
-                <div className="flex-1 overflow-y-auto p-6">
-                    <div className="bg-white rounded-lg shadow-md p-6">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-2xl font-semibold">Activity History</h2>
-                            <div className="flex items-center">
-                                <input
-                                    type="text"
-                                    placeholder="Search by user, action, activity type"
-                                    className="border rounded-md px-3 py-2 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                />
-                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                                    Search
-                                </button>
-                            </div>
-                        </div>
+                <div className="flex-1 p-6">
+        <div className="bg-white rounded-lg shadow-md p-6">
+          {/* Header */}
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-2xl font-semibold">Activity History</h2>
+            <div className="flex items-center space-x-2">
+              <input
+                type="text"
+                placeholder="Search by user, date, or activity type"
+                className="border rounded-md px-3 py-2 focus:outline-none "
+              />
+              <button className="bg-[#199FB1]  text-white font-bold py-2 px-4 rounded">
+                Search
+              </button>
+              <button className="text-gray-500 hover:text-gray-700">
+                <span className="material-icons">filter</span>
+              </button>
+            </div>
+          </div>
 
-                        <table className="min-w-full divide-y divide-gray-200">
-                            <thead>
-                                <tr>
-                                    <th className="px-4 py-2">
-                                        <input type="checkbox" />
-                                    </th>
-                                    <th className="px-4 py-2 text-left">User</th>
-                                    <th className="px-4 py-2 text-left">Action</th>
-                                    <th className="px-4 py-2 text-left">Date & Time</th>
-                                    <th className="px-4 py-2"></th> 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {activityData.map((item, index) => (
-                                    <tr key={index} className={`${index % 2 === 0 ? 'bg-gray-50' : ''}`}>
-                                        <td className="px-4 py-2">
-                                            <input type="checkbox" />
-                                        </td>
-                                        <td className="px-4 py-2">{item.user}</td>
-                                        <td className="px-4 py-2">{item.action}</td>
-                                        <td className="px-4 py-2">{item.date}</td>
-                                        <td className="px-4 py-2 text-center">
-                                            <button className="text-blue-500 hover:text-blue-700">...</button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+          {/* Table */}
+          <table className="min-w-full border divide-y divide-gray-200">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-4 py-2">
+                  <input type="checkbox" />
+                </th>
+                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">User</th>
+                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Action</th>
+                <th className="px-4 py-2 text-left text-sm font-medium text-gray-700">Date & Time</th>
+                <th className="px-4 py-2"></th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {activityData.map((item, index) => (
+                <tr
+                  key={index}
+                  className={`${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
+                >
+                  <td className="px-4 py-2">
+                    <input type="checkbox" />
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-700">{item.user}</td>
+                  <td className="px-4 py-2 text-sm text-gray-700">{item.action}</td>
+                  <td className="px-4 py-2 text-sm text-gray-700">{item.date}</td>
+                  <td className="px-4 py-2 text-center">
+                    <button className="text-gray-500 hover:text-gray-700">
+                      <span className="material-icons">...</span>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-                        <div className="mt-4 flex justify-between items-center">
-                            <div>
-                                Showing <span>1</span> to <span>8</span> of <span>57</span> results
-                            </div>
-                            <div>
-                                <button className="mr-2 px-3 py-1 rounded-md border border-gray-300 hover:bg-gray-100">Previous</button>
-                                <button className="px-3 py-1 rounded-md bg-blue-500 hover:bg-blue-700 text-white">Next</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          {/* Footer */}
+          <div className="mt-4 flex justify-between items-center">
+            <button className="text-red-500 hover:text-red-700">Delete</button>
+            <div className="flex items-center space-x-2">
+              <button className="px-3 py-1 border rounded-md text-gray-500 hover:bg-gray-100">
+                Previous
+              </button>
+              <span>Page 1 of 5</span>
+              <button className="px-3 py-1 border rounded-md text-gray-500 hover:bg-gray-100">
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
             </div>
 
         </div>

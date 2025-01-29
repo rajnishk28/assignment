@@ -6,6 +6,7 @@ import WelcomePage from "./components/profile/WelcomePage"
 import ProfileUpdatePage from './components/profile/ProfileUpdatePage';
 import AdminHomePage from "./components/admin/dashboard/Home"
 import AdminHistoryPage from "./components/admin/History"
+import NotFound from './components/admin/NotFound/NotFound';
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/profile-update" element={<ProfileUpdatePage />} />
         <Route path="/dashboard" element={<AdminHomePage />} />
         <Route path="/history" element={<AdminHistoryPage />} />
+        <Route path="/*" element={<NotFound />} />
       </Routes>
     </Router>
   )
