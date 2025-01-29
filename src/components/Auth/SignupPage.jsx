@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import backgroundImage from "../assets/backgroun.png";
-import leftLogo from "../assets/Group.png";
-import { AdminSignup } from "../Api/Admin/authServices"
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import backgroundImage from "../../assets/backgroun.png";
+import leftLogo from "../../assets/Group.png";
+import { AdminSignup } from "../../Api/Admin/authServices"
 
 const SignupPage = () => {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loading,setLoading]=useState(false);
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -24,11 +25,14 @@ const SignupPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Form Data:", formData);
+        setLoading(true)
         try {
             const response = await AdminSignup(formData)
             console.log("API Response:", response);
         } catch (error) {
             console.error("Error during API call:", error);
+        }finally{
+            setLoading(false);
         }
     };
 
@@ -100,7 +104,11 @@ const SignupPage = () => {
                                 onClick={() => setShowPassword(!showPassword)}
                                 className="absolute inset-y-0 right-3 flex items-center text-gray-500"
                             >
-                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                {showPassword ? (
+                                    <AiFillEyeInvisible className="h-5 w-5 text-gray-500" />
+                                ) : (
+                                    <AiFillEye className="h-5 w-5 text-gray-500" />
+                                )}
                             </button>
                         </div>
 
@@ -119,16 +127,23 @@ const SignupPage = () => {
                                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                 className="absolute inset-y-0 right-3 flex items-center text-gray-500"
                             >
-                                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
+                                {showConfirmPassword ? (
+                                    <AiFillEyeInvisible className="h-5 w-5 text-gray-500" />
+                                ) : (
+                                    <AiFillEye className="h-5 w-5 text-gray-500" />
+                                )}
                             </button>
                         </div>
 
                         <button
-                            type="submit"
-                            className="w-full py-2 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600"
-                        >
-                            Create Account
-                        </button>
+                                type="submit"
+                                disabled={loading}
+                                className={`bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline ${
+                                    loading ? "opacity-50 cursor-not-allowed" : ""
+                                }`}
+                            >
+                                {loading ? "Loading..." : "Create Account"}
+                            </button>
                     </form>
 
                     <p className="text-sm text-gray-500 text-center mt-4">

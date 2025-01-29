@@ -12,3 +12,11 @@ export const AdminSignup = async (data) => {
     const response = await axiosInstance.post(ENDPOINTS.ADMINSIGNUP, data);
     return response
 }
+export const AdminUpdateProfile = async (token, data) => {
+    const response = await axiosInstance.put(ENDPOINTS.ADMINUPDATEPROFILE, data, {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+    return response
+}
