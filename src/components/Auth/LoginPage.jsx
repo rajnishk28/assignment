@@ -6,8 +6,8 @@ import { AdminLogin } from "../../Api/Admin/authServices";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const LoginPage = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("admin512@gmail.com");
+    const [password, setPassword] = useState("admin@12345");
     const [showPassword, setShowPassword] = useState(false);
     const [errors, setErrors] = useState({});
     const [serverError, setServerError] = useState("");
