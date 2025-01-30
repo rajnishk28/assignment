@@ -10,17 +10,18 @@ import NotFound from './components/admin/NotFound/NotFound';
 
 
 
+
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/*" element={<NotFound />} />
         <Route path="/welcome" element={<WelcomePage />} />
-        <Route path="/profile-update" element={<ProfileUpdatePage />} />
         <Route path="/dashboard" element={<AdminHomePage />} />
         <Route path="/history" element={<AdminHistoryPage />} />
-        <Route path="/*" element={<NotFound />} />
+        <Route path="/profile-update" element={<ProfileUpdatePage />} />
       </Routes>
     </Router>
   )

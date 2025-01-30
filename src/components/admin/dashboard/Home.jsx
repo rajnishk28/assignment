@@ -1,6 +1,8 @@
 import React from "react";
 import AdminSideBar from "../widgets/AdminSideBar";
 import BackgroundPage from "../background/BackgroundPage";
+import Header from "../background/Header"
+import graphImage from "../../../assets/graphImage.png"
 
 const analyticsData = [
   { title: "Active Users", value: "5556", color: "blue", action: "View All Users" },
@@ -12,7 +14,16 @@ const analyticsData = [
 
 const userManagementData = [
   {
-    name: "Yeray Rosalos",
+    name: "Rajnish",
+    email: "Rajnishosales@gmail.com",
+    phone: "+91-098765432",
+    sold: 2,
+    bought: 1,
+    block: true,
+    rating: 4,
+  },
+  {
+    name: "Rosalos",
     email: "yerayrosales@gmail.com",
     phone: "+91-098765432",
     sold: 2,
@@ -40,39 +51,35 @@ const Home = () => {
       <div className="relative z-10 flex">
         <AdminSideBar />
         <div className="flex-1 p-6">
-          {/* Analytics Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-6">
-            {analyticsData.map((item, index) => (
-              <div
-                key={index}
-                className={`bg-white rounded-lg shadow-md p-4 text-center border-t-4 border-${item.color}-500`}
-              >
-                <h3 className="text-xl font-semibold">{item.title}</h3>
-                <p className={`text-3xl font-bold text-${item.color}-500`}>{item.value}</p>
-                {item.action && (
-                  <button className="mt-2 text-sm text-blue-500 hover:underline">
-                    {item.action}
-                  </button>
-                )}
-              </div>
-            ))}
-          </div>
+          <Header />
 
-          {/* Company Growth Chart Placeholder */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-xl font-semibold mb-4">Company Growth</h3>
-            <div className="h-64 bg-gray-100 flex items-center justify-center">
-              <span className="text-gray-500">[Chart Placeholder]</span>
+          <div className="flex flex-col md:flex-row justify-between gap-4 w-full">
+            {/* Analytics Cards - 2/3 Width */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-2/3">
+              {analyticsData.map((item, index) => (
+                <div
+                  key={index}
+                  className={`bg-white rounded-lg shadow-md p-4 text-center border-t-4 border-${item.color}-500`}
+                >
+                  <h3 className="text-xl font-semibold">{item.title}</h3>
+                  <p className={`text-3xl font-bold text-${item.color}-500`}>{item.value}</p>
+                  {item.action && (
+                    <button className="mt-2 text-sm text-blue-500 hover:underline">
+                      {item.action}
+                    </button>
+                  )}
+                </div>
+              ))}
             </div>
-            <div className="mt-4 flex justify-end gap-2">
-              <button className="px-4 py-2 rounded-md bg-gray-200">Month</button>
-              <button className="px-4 py-2 rounded-md bg-gray-200">Year</button>
-              <button className="px-4 py-2 rounded-md bg-gray-200">3 Year</button>
+
+            {/* Company Growth Chart - 1/3 Width */}
+            <div className="flex items-start justify-center w-full md:w-1/3">
+              <img src={graphImage} alt="graph" className="object-contain h-auto w-full" />
             </div>
           </div>
 
           {/* User Management Table */}
-          <div className="bg-white rounded-lg shadow-md p-6">
+          <div className="bg-white rounded-lg shadow-md p-6 mt-6">
             <h3 className="text-xl font-semibold mb-4">User Management</h3>
             <table className="min-w-full divide-y divide-gray-200">
               <thead>
@@ -104,9 +111,8 @@ const Home = () => {
                     </td>
                     <td className="px-4 py-2">
                       <button
-                        className={`px-3 py-1 rounded-md ${
-                          user.block ? "bg-red-500 text-white" : "bg-green-500 text-white"
-                        }`}
+                        className={`px-3 py-1 rounded-md ${user.block ? "bg-red-500 text-white" : "bg-green-500 text-white"
+                          }`}
                       >
                         {user.block ? "Block" : "Unblock"}
                       </button>

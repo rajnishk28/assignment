@@ -3,10 +3,10 @@ import { Link, useLocation } from 'react-router-dom';
 
 const navItems = [
   { text: 'Dashboard', to: '/dashboard' },
+  { text: 'History', to: '/history' },
   { text: 'User Management', to: '/user-management' },
   { text: 'Rating and Review', to: '/rating-review' },
   { text: 'Settings', to: '/settings' },
-  { text: 'History', to: '/history' },
   { text: 'All Bookings', to: '/all-bookings' },
   { text: 'Push Notification', to: '/push-notifications' },
   { text: 'Transaction List', to: '/transactions' },
@@ -32,7 +32,7 @@ const AdminSideBar = () => {
           <li key={item.text}>
             <Link
               to={item.to}
-              className={`block py-2 px-4 rounded hover:bg-[#e6f2f5] transition duration-300 ${currentUrl === item.to ? 'bg-[#e6f2f5] font-bold' : ''
+              className={`block py-2 px-4 rounded hover:bg-[#199FB1] hover:text-white  transition duration-300 ${currentUrl === item.to ? 'bg-[#199FB1] text-white   font-bold' : ''
                 }`}
             >
               {item.text}
